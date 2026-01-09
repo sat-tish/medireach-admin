@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { fetchAllHospitals, deleteHospital } from "../features/hospitals/hospitalSlice";
-import { logout } from "../features/auth/authSlice";
-
 import dummyImage from "../assets/images/dummyProfileImage.jpg"
 import ExportHospitalsExcel from "../components/ExportHospitalsExcel";
 
@@ -20,6 +18,7 @@ import {
   Layers,
 } from "lucide-react";
 import Sidebar from "../components/Sidebar";
+import LogoutButton from "../commonComponents/LogoutButton";
 
 function HospitalsManagement() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -37,13 +36,6 @@ function HospitalsManagement() {
   }, [dispatch]);
 
   // ==================== HANDLERS ====================
-  const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
-      dispatch(logout());
-      navigate("/login");
-    }
-  };
 
   const handleDelete = (id) => {
     const confirmDelete = window.confirm(
@@ -117,14 +109,7 @@ function HospitalsManagement() {
                 />
               </div>
             </div>
-
-            <button
-              onClick={handleLogout}
-              className="flex items-center space-x-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50"
-            >
-              <LogOut className="h-5 w-5" />
-              <span>Logout</span>
-            </button>
+              <LogoutButton />
           </div>
         </header>
 
@@ -162,7 +147,7 @@ function HospitalsManagement() {
           </div>
 
           {/* ==================== HOSPITAL LIST ==================== */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 h-125 overflow-scroll">
             <div className="overflow-x-auto">
               <table className="min-w-full text-sm">
                 <thead className="bg-gray-50 border-b border-gray-500">

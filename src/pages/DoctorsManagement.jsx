@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { fetchAllDoctors, deleteDoctor } from "../features/doctors/doctorSlice";
-import { logout } from "../features/auth/authSlice";
 import dummyImage from "../assets/images/dummyProfileImage.jpg"
 import ExportDoctorsExcel from "../components/ExportDoctorsExcel";
 
@@ -19,6 +18,7 @@ import {
   Users
 } from "lucide-react";
 import Sidebar from "../components/Sidebar";
+import LogoutButton from "../commonComponents/LogoutButton";
 
 function DoctorsManagement() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -36,13 +36,6 @@ function DoctorsManagement() {
   }, [dispatch]);
 
   // ==================== HANDLERS ====================
-  const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
-      dispatch(logout());
-      navigate("/login");
-    }
-  };
 
   const handleDelete = (id) => {
     const confirmDelete = window.confirm(
@@ -117,13 +110,7 @@ function DoctorsManagement() {
               </div>
             </div>
 
-            <button
-              onClick={handleLogout}
-              className="flex items-center space-x-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50"
-            >
-              <LogOut className="h-5 w-5" />
-              <span>Logout</span>
-            </button>
+            <LogoutButton />
           </div>
         </header>
 
@@ -159,7 +146,7 @@ function DoctorsManagement() {
           </div>
 
           {/* ==================== DOCTOR LIST ==================== */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 h-125 overflow-scroll">
             <div className="overflow-x-auto">
               <table className="min-w-full text-sm">
                 <thead className="bg-gray-50 border-b border-gray-500">

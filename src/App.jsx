@@ -8,6 +8,7 @@ import HospitalsManagement from "./pages/HospitalsManagement";
 import DiagnosticsManagement from "./pages/DiagnosticsManagement";
 import SuccessStoriesManagement from "./pages/SuccessStoriesManagement";
 import BlogsManagement from "./pages/BlogsManagement";
+import AddDoctor from "./pages/AddDoctor";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Route path="/diagnostics" element={<DiagnosticsManagement />} />
       <Route path="/success-stories" element={<SuccessStoriesManagement />} />
       <Route path="/blogs" element={<BlogsManagement />} />
+      <Route path="/doctors/add" element={<AddDoctor />} />
  
     </Routes>
   );

@@ -8,7 +8,6 @@ import { fetchAllDiagnostics } from "../features/diagnostics/diagnosticSlice";
 import { fetchAllBlogs } from "../features/blogs/blogSlice";
 import { fetchAllSuccessStories } from "../features/successStories/successStoriesSlice";
 import RevenueChart from "../components/RevenueChart";
-import { logout } from "../features/auth/authSlice";
 import AnalyticsChart from "../components/AnalyticsChart";
 import {
   setQuery,
@@ -35,6 +34,7 @@ import {
   X,
 } from "lucide-react";
 import Sidebar from "../components/Sidebar";
+import LogoutButton from "../commonComponents/LogoutButton";
 
 function Dashboard() {
   //const [searchQuery, setSearchQuery] = useState("");
@@ -302,14 +302,6 @@ const recentActivities = [
   return "Just now";
 };
 
-  const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
-      dispatch(logout());
-      navigate("/login");
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* ==================== SIDEBAR ==================== */}
@@ -399,13 +391,7 @@ const recentActivities = [
         </div>
       )}
     </div>
-         <button
-              onClick={handleLogout}
-              className="flex items-center space-x-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50"
-            >
-              <LogOut className="h-5 w-5" />
-              <span>Logout</span>
-            </button>
+         <LogoutButton />
           </div>
         </header>
 
